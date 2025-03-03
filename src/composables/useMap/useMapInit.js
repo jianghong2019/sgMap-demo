@@ -1,4 +1,3 @@
-import { ref, reactive, shallowRef, onMounted } from 'vue'
 export const sgMapInstance = shallowRef(null)
 /**
     * @description 初始化地图，暴露初始化后的回调、地图实例

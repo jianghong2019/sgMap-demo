@@ -1,4 +1,3 @@
-import { ref, toValue, watch } from 'vue';
 export const useVectorLayer = (map) => {
     const sgMapInstance = toValue(map)
     console.log(map, sgMapInstance);
@@ -118,7 +117,6 @@ export const useVectorLayer = (map) => {
         return tileLayers
     }
     const addPolygonLayer = (district, id = 'polygonLayer') => {
-        const source = toValue(district)
         const polygonSource = ref(null)
         watch(district, (newValue, oldValue) => {
             if (!newValue) return
@@ -217,21 +215,38 @@ export const useVectorLayer = (map) => {
          * @param {keyword} 行政区域编码 江西：360000
          * @returns {object} district 调用获取行政区域数据的返回值
          */
-    const getDistrict = async (keyword = 360000) => {
-        const districtPlusTask = window.districtPlusTask
-        const res = await districtPlusTask.searchDistrict({
-            keyword, // 检索关键字，或者是行政区划编码,必填（第一级为 “中国”）
-            pageIndex: 1, //(默认 1)	起始页码, 默认为1
-            pageSize: 1, //(默认 10)	返回记录数，默认为10
-            subdistrict: [
-                1
-            ], //查询结果展示的子级。设置显示下级行政区级数（行政区级别包括：省/直辖市、市、区/县、乡镇、村5个级别）;可选值：0、1、2、3、4. 0：不返回下级行政区；1：返回下一级行政区；2：返回下两级行政区；3：返回下三级行政区；4：返回下四级行政区；
-            extension: true, // fasle:不返回行政区边界坐标点；true会返回所有级别的行政区划边界，当级别较多时数据量非常大，慎重使用
-            levels: "county,province,city,town" //"county,province,city,county,town,village" subdistrict: 2,                //需要
+    const getDistrict = (keyword) => {
+        const isPending = ref(false)
+        const district = ref(null)
+        watch(keyword, async (newValue, oldValue) => {
+            try {
+                if (newValue !== oldValue) {
+                    const districtPlusTask = window.districtPlusTask
+                    isPending.value = true
+                    const res = await districtPlusTask.searchDistrict({
+                        keyword: newValue, // 检索关键字，或者是行政区划编码,必填（第一级为 “中国”）
+                        pageIndex: 1, //(默认 1)	起始页码, 默认为1
+                        pageSize: 1, //(默认 10)	返回记录数，默认为10
+                        subdistrict: [
+                            1
+                        ], //查询结果展示的子级。设置显示下级行政区级数（行政区级别包括：省/直辖市、市、区/县、乡镇、村5个级别）;可选值：0、1、2、3、4. 0：不返回下级行政区；1：返回下一级行政区；2：返回下两级行政区；3：返回下三级行政区；4：返回下四级行政区；
+                        extension: true, // fasle:不返回行政区边界坐标点；true会返回所有级别的行政区划边界，当级别较多时数据量非常大，慎重使用
+                        levels: "county,province,city,town" //"county,province,city,county,town,village" subdistrict: 2,                //需要
+                    })
+                    district.value = res.status === '1' && res?.data?.districts?.length && res.data.districts[
+                        0] || null
+                    console.log(district);
+                }
+
+            } catch (error) {
+
+            } finally {
+                console.log('无论成功与否都返回true');
+                isPending.value = false
+            }
+
         })
-        const district = res.status === '1' && res?.data?.districts?.length && res.data.districts[
-            0] || null
-        return district
+        return { district, isPending }
     }
     return {
         getDistrict,
