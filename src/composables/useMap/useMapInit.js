@@ -22,6 +22,7 @@ export const sgMapInstance = shallowRef(null)
  */
 export const useMapInit = (el, mapconfig, callback) => {
     onMounted(() => {
+        console.log(SGMap,"<==SGMap");
         // 思极地图认证
         SGMap.tokenTask.login(mapconfig.appkey, mapconfig.appsecret).then(() => {
             SGMap.plugin([

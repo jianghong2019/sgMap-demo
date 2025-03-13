@@ -116,8 +116,8 @@ export const useVectorLayer = (map) => {
         }
         return tileLayers
     }
-    const addPolygonLayer = (district, id = 'polygonLayer') => {
-        const polygonSource = ref(null)
+    const addPolygonLayer = (district, { id = 'polygonLayer', isAddSource = false }) => {
+        const source = ref(null)
         watch(district, (newValue, oldValue) => {
             if (!newValue) return
             if (!map.value?.getLayer(id)) {
@@ -141,15 +141,60 @@ export const useVectorLayer = (map) => {
                     // },
                 });
             }
-            polygonSource.value = setPolygonSource(newValue, id)
+            source.value = isAddSource ? addPolygonSource(newValue, id) : null
         })
         console.log(map);
 
         return {
-            polygonSource,
+            source,
             id,
             layer: map.value?.getLayer(id),
-            removeLayer: () => removeLayer(id)
+            destoryLayer: (isSourceDestory) => destoryLayer(id, isSourceDestory)
+        }
+    }
+    /**
+         * @description 业务层-三期-待办工单-计划点连线图层
+         * @param {array} source 图层所需数据
+         * @param {object} source.properties 图元所需的属性，可配置与`属性驱动`相对应的控制字段
+         * @param {String} id - 图层id-可用于调用地图方法的传参-唯一
+         * @returns {object} 返回图层信息和图层数据源信息以及图层、数据源销毁方法
+         * @property {array} featureSource 图层数据源
+         * @property {Function} -destory 销毁当前图层
+         * @property {Function} -remove 销毁当前图层所加载的数据源
+         */
+    const addLineLayer = (district, { id = 'lineLayer', isAddSource = false }) => {
+        const source = ref(null)
+        watch(district, (newValue, oldValue) => {
+            if (!newValue) return
+            if (!map.value?.getLayer(id)) {
+                map.value?.addLayer({
+                    id,
+                    type: "line",
+                    source: {
+                        type: "geojson",
+                        data: {
+                            type: "FeatureCollection",
+                            features: [],
+                        },
+                    },
+                    layout: {
+                        "line-cap": "round",
+                        "line-join": "round",
+                    },
+                    paint: {
+                        "line-color": ["get", "lineColor"],
+                        "line-width": ["get", "lineWidth"],
+                        "line-dasharray": [1, 2],
+                        "line-offset": -2
+                    },
+                });
+            }
+            source.value = isAddSource ? addLineSource(newValue, id) : null
+        })
+        return {
+            id,
+            layer: map.value?.getLayer(id),
+            destoryLayer: (isSourceDestory) => destoryLayer(id, isSourceDestory)
         }
     }
     /**
@@ -177,39 +222,86 @@ export const useVectorLayer = (map) => {
             remove: () => sgMapInstance.setLayoutProperty(id, "visibility", "none")
         }
     }
-    const removeLayer = (id) => {
-        map?.value.removeLayer(id)
-        removeLayerSource(id)
+    const destoryLayer = (id, isSourceDestory = true) => {
+        const layer = map?.value?.getLayer(id) ?? null
+        if (!layer) return
+        map?.value?.removeLayer(id)
+        isSourceDestory && destorySource(id)
     }
-    const removeLayerSource = (id) => {
+    const destorySource = (id) => {
+        const layer = map?.value?.getLayer(id) ?? null
+        const source = map.value?.getSource(id)
+        if (!source) return
         map.value?.getSource(id).setData({
             type: "FeatureCollection",
             features: [],
         });
-        map?.value.removeSource(id)
+        !layer && map?.value.removeSource(id)
     }
-    const setPolygonSource = (properties, layerId, level) => {
-        const list = properties.sub_districts || []
-        let features = []
-        list.map((r) => {
-            const {
-                shape: geometry
-            } = r
-            features.push({
-                type: "Feature",
-                geometry,
-                properties: {
-                    color: '#68AFB0',
-                    ...r
-                },
+    const addPolygonSource = (district, id) => {
+        console.log(district, id);
+        watch(district, (newValue, oldValue) => {
+            const features = newValue?.map((r) => {
+                return {
+                    type: "Feature",
+                    geometry: r.shape,
+                    properties: {
+                        color: '#68AFB0',
+                        ...r
+                    },
+                }
             })
+            console.log(features, "面数据", id, map.value?.getSource(id));
+            const currentSource = map.value?.getSource(id)
+            const source = {
+                type: "FeatureCollection",
+                features
+            }
+            if (!currentSource) {
+                map.value?.addSource(id, source)
+            } else {
+                map.value?.getSource(id)?.setData(source);
+            }
         })
-        console.log(features, "面数据", layerId);
-        map.value?.getSource(layerId).setData({
-            type: "FeatureCollection",
-            features
-        });
-        return list
+        return {
+            destorySource: () => destorySource(id)
+        }
+
+    }
+    const addLineSource = (district, id) => {
+        watch(district, (newValue, oldValue) => {
+            const features = newValue?.map((r) => {
+                console.log(r.shape.coordinates[0][0]);
+                
+                return {
+                    type: "Feature",
+                    geometry: {
+                        type: "LineString",
+                        coordinates: r.shape?.coordinates?.[0]?.[0] ?? [],
+                    },
+                    properties: {
+                        color: '#f00',
+                        lineColor:'#c0f',
+                        lineWidth:4,
+                        ...r
+                    },
+                }
+            })
+            console.log(features, "线数据", id, map.value?.getSource(id));
+            const currentSource = map.value?.getSource(id)
+            const source = {
+                type: "FeatureCollection",
+                features
+            }
+            if (!currentSource) {
+                map.value?.addSource(id, source)
+            } else {
+                map.value?.getSource(id)?.setData(source);
+            }
+        })
+        return {
+            destorySource: () => destorySource(id)
+        }
     }
     /**
          * @param {keyword} 行政区域编码 江西：360000
@@ -233,8 +325,7 @@ export const useVectorLayer = (map) => {
                         extension: true, // fasle:不返回行政区边界坐标点；true会返回所有级别的行政区划边界，当级别较多时数据量非常大，慎重使用
                         levels: "county,province,city,town" //"county,province,city,county,town,village" subdistrict: 2,                //需要
                     })
-                    district.value = res.status === '1' && res?.data?.districts?.length && res.data.districts[
-                        0] || null
+                    district.value = res.status === '1' && res?.data?.districts?.length && res.data.districts || null
                     console.log(district);
                 }
 
@@ -251,5 +342,8 @@ export const useVectorLayer = (map) => {
     return {
         getDistrict,
         addPolygonLayer,
+        addLineLayer,
+        addPolygonSource,
+        addLineSource
     }
 }

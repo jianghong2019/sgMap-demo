@@ -3,10 +3,8 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
 import { sgMapInstance, useMapInit, useVectorLayer } from '@/composables/useMap'
 console.log(useVectorLayer, sgMapInstance)
-
 const emit = defineEmits(['loaded'])
 const mapconfig = {
   srcSdk: 'https://map.sgcc.com.cn/maps?v=3.0.0',
