@@ -199,27 +199,38 @@ export const useVectorLayer = (map) => {
     }
     /**
          * @description 创建背景图层，背景图层需要多次控制显隐，背景图层remove为将其设置为不可见
-         * @param {String} id 背景图层id
+         * @param {Boolean} isLoaded 是否初始化一个背景图层
+         * @param {Object} options 配置项
+         * @param {String} options.id 图层id
          * @returns {object}
          * @property {String} id -背景图层id，与入参id一致
          * @property {object} layer -创建后的图层对象
          * @property {Function} remove -移除背景图层（将图层设置为不可见）
          */
-    const addbackgroundLayer = (id = 'bgLayer') => {
-        if (!sgMapInstance.getLayer(id)) {
-            sgMapInstance.addLayer({
-                id,
-                type: "background",
-                paint: {
-                    "background-color": "#000",
-                    "background-opacity": 0.4,
-                },
-            });
+    const addbackgroundLayer = (isLoaded, options = {}) => {
+        const { id = 'bgLayer' } = options
+        watch(isLoaded, (newValue, oldValue) => {
+            if (newValue && !map.value.getLayer(id)) {
+                map.value.addLayer({
+                    id,
+                    type: "background",
+                    paint: {
+                        "background-color": "#000",
+                        "background-opacity": 0.4,
+                    },
+                });
+            }
+        })
+        const trigger = () => {
+            const name = map?.value?.getLayoutProperty(id, "visibility")
+            console.log(name);
+            map?.value?.setLayoutProperty(id, "visibility", name === 'none' ? 'visible' : 'none')
         }
         return {
             id,
-            layer: sgMapInstance.getLayer(id),
-            remove: () => sgMapInstance.setLayoutProperty(id, "visibility", "none")
+            layer: map?.value?.getLayer(id),
+            trigger,
+            destoryLayer: () => destoryLayer(id, false)
         }
     }
     const destoryLayer = (id, isSourceDestory = true) => {
@@ -272,7 +283,7 @@ export const useVectorLayer = (map) => {
         watch(district, (newValue, oldValue) => {
             const features = newValue?.map((r) => {
                 console.log(r.shape.coordinates[0][0]);
-                
+
                 return {
                     type: "Feature",
                     geometry: {
@@ -281,8 +292,8 @@ export const useVectorLayer = (map) => {
                     },
                     properties: {
                         color: '#f00',
-                        lineColor:'#c0f',
-                        lineWidth:4,
+                        lineColor: '#c0f',
+                        lineWidth: 4,
                         ...r
                     },
                 }
@@ -341,6 +352,7 @@ export const useVectorLayer = (map) => {
     }
     return {
         getDistrict,
+        addbackgroundLayer,
         addPolygonLayer,
         addLineLayer,
         addPolygonSource,
