@@ -1,3 +1,4 @@
+
 export const useVectorLayer = (map) => {
     const sgMapInstance = toValue(map)
     console.log(map, sgMapInstance);
@@ -135,10 +136,9 @@ export const useVectorLayer = (map) => {
                         "fill-color": ["get", "color"],
                         "fill-opacity": 1
                     },
-                    // paint: {
-                    // 	"fill-color": ["get", "color"],
-                    // 	"fill-opacity": ["get", "opacity"]
-                    // },
+                    layout: {
+                        "visibility": "visible",
+                    },
                 });
             }
             source.value = isAddSource ? addPolygonSource(newValue, id) : null
@@ -350,12 +350,112 @@ export const useVectorLayer = (map) => {
         })
         return { district, isPending }
     }
+    const addGeoJsonLayer = (geoJson, options = {}) => {
+        /* type支持类型：fill, line, symbol, circle, esymbol, eline, heatmap, fill-extrusion, raster, hillshade, background */
+        const { id = 'geoJsonLayer', type = 'fill', layout, paint } = options
+
+        if (!map.value?.getLayer(id)) {
+            const data = {
+                id,
+                type,
+                source: {
+                    type: "geojson",
+                    data: geoJson,
+                },
+                layout,
+                paint
+            }
+            console.log(map.value, data, options, "map");
+            map.value?.addLayer(data);
+        }
+        return {
+            id,
+            layer: map.value?.getLayer(id),
+            destoryLayer: () => destoryLayer(id, false)
+        }
+    }
+    const addGeoJsonLayers = (geoJsonData) => {
+        const layerReturns = []
+        watch(geoJsonData, (datas, oldValue) => {
+            if (!datas || !datas?.length) return
+            datas?.forEach((geoDataItem) => {
+                const { type } = geoDataItem
+                let layout = {}
+                let paint = {}
+                if (type === 'circle') {
+                    paint = {
+                        'circle-radius': [
+                            "case",
+                            ["has", "radius"],
+                            ["get", "radius"],
+                            10
+                        ],
+                        'circle-color': ["get", "color"]
+                    }
+                } else if (type === 'line') {
+                    layout = {
+                        'line-cap': 'square',
+                        'line-join': 'miter',
+                    }
+                    paint = {
+                        'line-color': ["get", "color"],
+                        'line-width': [
+                            "case",
+                            ["has", "width"],
+                            ["get", "width"],
+                            3
+                        ],
+                        // "line-dasharray": [1,2],//虚线
+                        "line-dasharray": [
+                            "case",
+                            ["==", ["get", "lineType"], 'dashed'],
+                            ["literal", [1, 2]],
+                            ["literal", []]
+                        ]
+                    }
+                } else if (type === 'symbol') {
+                    layout = {
+                        "icon-image": ["get", "icon"],
+                        "icon-anchor": "center",
+                        "icon-size": [
+                            "case",
+                            ["has", "iconSize"],
+                            ["get", "iconSize"],
+                            0.4
+                        ],
+                        "icon-rotate": ['get', 'rotation'],
+                        "icon-allow-overlap": true
+                    }
+                }
+                /* 根据数据结构绘制地图元素*/
+                const layerReturn = addGeoJsonLayer(geoDataItem.data, {
+                    id: geoDataItem.sbid,
+                    type: geoDataItem.type,
+                    layout,
+                    paint,
+                })
+                layerReturns.push(layerReturn)
+            })
+
+        }, {
+            immediate: true
+        })
+        return {
+            destory: () => {
+                layerReturns?.forEach((layerReturn) => {
+                    layerReturn?.destoryLayer()
+                })
+            },
+        }
+
+    }
     return {
         getDistrict,
         addbackgroundLayer,
         addPolygonLayer,
         addLineLayer,
         addPolygonSource,
-        addLineSource
+        addLineSource,
+        addGeoJsonLayers
     }
 }

@@ -10,6 +10,11 @@ const handlerLoaded = (map) => {
   <RouterView />
 </template>
 
+<style>
+html {
+  font-size: calc(100vw / 1920);
+}
+</style>
 <style scoped>
 header {
   line-height: 1.5;
