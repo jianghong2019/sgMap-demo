@@ -77,7 +77,7 @@ export const useMapEvents = (map) => {
 
                     let resourceBaseurl = process.env.NODE_ENV == 'development' ?
                         "/public/icons/" :
-                        "./public/icons/"
+                        "./icons/"
                     let url = resourceBaseurl + imageObj.url
                     map?.value.loadImage(url, (e, img) => {
                         if (!map.value.hasImage(imageid)) {
