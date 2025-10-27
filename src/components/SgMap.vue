@@ -42,12 +42,12 @@ useMapInit('sgMap', mapconfig, (map) => {
       maxWidth: 80,
       unit: 'metric',
     }),
-    'bottom-left',
+    'bottom-left'
   )
   map.value.addControl(new SGMap.PitchControl())
   map.value.addControl(new SGMap.NavigationControl(), 'bottom-right')
   emit('loaded', map)
-  router.push({ name: 'home' })
+  router.push({ name: 'drag' })
 })
 </script>
 

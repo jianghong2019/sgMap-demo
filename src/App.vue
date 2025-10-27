@@ -14,6 +14,11 @@ const handlerLoaded = (map) => {
 html {
   font-size: calc(100vw / 1920);
 }
+* {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 </style>
 <style scoped>
 header {
