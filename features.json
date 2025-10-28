@@ -1,0 +1,101 @@
+{
+	"successful": true,
+	"code": 200,
+	"msg": "请求成功",
+	"data": [
+		{
+			"id": "1007",
+			"sbid": "1007",
+			"sbzlx": "32600000",
+			"sbmc": "",
+			"type": "fill",
+			"data": {
+				"type": "FeatureCollection",
+				"features": [
+					{
+						"type": "Feature",
+						"properties": {
+							"name": "低压-电缆终端头",
+							"sbid": "100801",
+							"color": "#f00",
+							"normalColor": "#f00",
+							"highlightColor": "#FFD700",
+							"opacity": 0.8,
+							"type": 0
+						},
+						"geometry": {
+							"type": "Polygon",
+							"coordinates": [
+								[
+									[
+										120.63919356881803,
+										38.62866906887916
+									],
+									[
+										122.24319747506803,
+										36.6540942343439
+									],
+									[
+										119.70535567819388,
+										36.83016888662563
+									],
+									[
+										120.63919356881803,
+										38.62866906887916
+									]
+								]
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"id": "1008",
+			"sbid": "1008",
+			"sbzlx": "32600001",
+			"sbmc": "",
+			"type": "fill",
+			"data": {
+				"type": "FeatureCollection",
+				"features": [
+					{
+						"type": "Feature",
+						"properties": {
+							"name": "低压-电缆终端头",
+							"sbid": "100801",
+							"color": "#009B83",
+							"normalColor": "#009B83",
+							"highlightColor": "#f09",
+							"opacity": 0.8,
+							"type": 1
+						},
+						"geometry": {
+							"type": "Polygon",
+							"coordinates": [
+								[
+									[
+										118.92532638131814,
+										36.48644950006813
+									],
+									[
+										117.94754317819252,
+										34.970371377091524
+									],
+									[
+										121.30935958444388,
+										33.919428278864345
+									],
+									[
+										118.92532638131814,
+										36.48644950006813
+									]
+								]
+							]
+						}
+					}
+				]
+			}
+		}
+	]
+}
