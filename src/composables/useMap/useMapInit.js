@@ -1,5 +1,6 @@
-import { ref, reactive, shallowRef, onMounted } from 'vue'
 export const sgMapInstance = shallowRef(null)
+export const isLoaded = ref(false)
+import { useMapEvents } from './useMapEvents';
 /**
     * @description 初始化地图，暴露初始化后的回调、地图实例
     * @param el {String} 地图初始化容器的id，不需要传`#`
@@ -23,6 +24,7 @@ export const sgMapInstance = shallowRef(null)
  */
 export const useMapInit = (el, mapconfig, callback) => {
     onMounted(() => {
+        console.log(SGMap, "<==SGMap");
         // 思极地图认证
         SGMap.tokenTask.login(mapconfig.appkey, mapconfig.appsecret).then(() => {
             SGMap.plugin([
@@ -48,13 +50,16 @@ export const useMapInit = (el, mapconfig, callback) => {
                     touchZoomRotate: true, // 禁止触摸缩放
                 });
                 sgMapInstance.value.on('load', async () => {
-
+                    console.log(sgMapInstance.value);
                     // initTool()
                     // showLayer()
                     // 加载专题数据与边界数据`
                     // await initThematic()
                     callback(sgMapInstance)
+                    isLoaded.value = true
                     window.geolocationTask = new SGMap.GeolocationTask(); // 地图定位
+                    const { styleimagemissing } = useMapEvents(sgMapInstance)
+                    styleimagemissing()
                 })
             });
 

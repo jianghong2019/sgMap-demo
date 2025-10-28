@@ -1,0 +1,421 @@
+ {
+	"RT_D": "操作成功",
+	"DTS": [{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [120.40259439674507,
+					36.06648500444482],
+					"type": "Point"
+				},
+				"properties": {
+					
+				}
+			}]
+		},
+		"type": "circle",
+		"sbmc": "未命名表箱",
+		"sbzlx": "",
+		"id": "",
+		"sbid": "1442559302888712580"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [120.400855114267,
+					36.0672457822446],
+					"type": "Point"
+				},
+				"properties": {
+					"icon": "pdbyq",
+					"sbzlx": "30200002",
+					"sbid": "1900571649"
+				}
+			}]
+		},
+		"type": "symbol",
+		"sbmc": "香区乙线香港花园#2站#3B",
+		"sbzlx": "30200002",
+		"id": "bc37e268-f9d0-47b7-ad8c-9efc44a68227",
+		"sbid": "1900571649"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": []
+		},
+		"type": "line",
+		"sbmc": "",
+		"sbzlx": "36000001",
+		"id": "",
+		"sbid": "26ead2e6-07fa-4cb9-9a1e-4335f1c7809e"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [120.40203266312106,
+					36.066473610998784],
+					"type": "Point"
+				},
+				"properties": {
+					"sbzlx": "321500001",
+					"sbid": "1451847977118425555",
+					"icon":"jlx"
+				}
+			}]
+		},
+		"type": "symbol",
+		"sbmc": "",
+		"sbzlx": "321500001",
+		"id": "",
+		"sbid": "1451847977118425555"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": []
+		},
+		"type": "line",
+		"sbmc": "",
+		"sbzlx": "36000001",
+		"id": "",
+		"sbid": "819414e5-989e-481b-93d7-e699357f3bf5"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [[120.40203004530971,
+					36.06648330790661],
+					[120.40203004530971,
+					36.06645559684053]],
+					"type": "LineString"
+				},
+				"properties": {
+					
+				}
+			}]
+		},
+		"type": "line",
+		"sbmc": "",
+		"sbzlx": "",
+		"id": "",
+		"sbid": "1447625852467591167"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": []
+		},
+		"type": "line",
+		"sbmc": "",
+		"sbzlx": "36000001",
+		"id": "",
+		"sbid": "99488ef3-86a8-4a72-84e3-24bd1209977e"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [120.40203266312106,
+					36.06646967248983],
+					"type": "Point"
+				},
+				"properties": {
+					"sbzlx": "321500001",
+					"sbid": "1451847977118425566",
+					"icon":"jrd"
+				}
+			}]
+		},
+		"type": "symbol",
+		"sbmc": "",
+		"sbzlx": "321500001",
+		"id": "",
+		"sbid": "1451847977118425566"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": []
+		},
+		"type": "line",
+		"sbmc": "",
+		"sbzlx": "36000001",
+		"id": "",
+		"sbid": "95145296-e025-4c4e-b245-9f7713e2df67"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [120.40203709689163,
+					36.06646967248983],
+					"type": "Point"
+				},
+				"properties": {
+					
+				}
+			}]
+		},
+		"type": "circle",
+		"sbmc": "",
+		"sbzlx": "",
+		"id": "",
+		"sbid": "3659221942089839"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": []
+		},
+		"type": "line",
+		"sbmc": "",
+		"sbzlx": "14000001",
+		"id": "",
+		"sbid": "e8e37deb-a41f-426c-995c-aa5c564c8afb"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [120.40204536916643,
+					36.06646857641171],
+					"type": "Point"
+				},
+				"properties": {
+					
+				}
+			}]
+		},
+		"type": "circle",
+		"sbmc": "",
+		"sbzlx": "",
+		"id": "",
+		"sbid": "14918221012441687"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [[120.40204536916643,
+					36.06646857641171],
+					[120.40205361265208,
+					36.0664654851046]],
+					"type": "LineString"
+				},
+				"properties": {
+					
+				}
+			}]
+		},
+		"type": "line",
+		"sbmc": "",
+		"sbzlx": "",
+		"id": "",
+		"sbid": "1447062902516226213"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [120.40205361265208,
+					36.0664654851046],
+					"type": "Point"
+				},
+				"properties": {
+					
+				}
+			}]
+		},
+		"type": "circle",
+		"sbmc": "",
+		"sbzlx": "",
+		"id": "",
+		"sbid": "14918221012441688"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": []
+		},
+		"type": "line",
+		"sbmc": "",
+		"sbzlx": "13000001",
+		"id": "",
+		"sbid": "52a2d0ce-4b03-466e-9fd0-1ba56dd518ab"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [120.4021509959973,
+					36.06646777405461],
+					"type": "Point"
+				},
+				"properties": {
+					
+				}
+			}]
+		},
+		"type": "circle",
+		"sbmc": "",
+		"sbzlx": "",
+		"id": "",
+		"sbid": "9851671430782537"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [[120.4021509959973,
+					36.06646777405461],
+					[120.4023050581332,
+					36.06646096467844]],
+					"type": "LineString"
+				},
+				"properties": {
+					
+				}
+			}]
+		},
+		"type": "line",
+		"sbmc": "",
+		"sbzlx": "",
+		"id": "",
+		"sbid": "1447062902516226212"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [120.4023050581332,
+					36.06646096467844],
+					"type": "Point"
+				},
+				"properties": {
+					
+				}
+			}]
+		},
+		"type": "circle",
+		"sbmc": "",
+		"sbzlx": "",
+		"id": "",
+		"sbid": "9851671430782536"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [[120.4023050581332,
+					36.06646096467844],
+					[120.40242081752807,
+					36.06645585764632]],
+					"type": "LineString"
+				},
+				"properties": {
+					
+				}
+			}]
+		},
+		"type": "line",
+		"sbmc": "",
+		"sbzlx": "",
+		"id": "",
+		"sbid": "1447062902516226214"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [120.40242081752807,
+					36.06645585764632],
+					"type": "Point"
+				},
+				"properties": {
+					
+				}
+			}]
+		},
+		"type": "circle",
+		"sbmc": "",
+		"sbzlx": "",
+		"id": "",
+		"sbid": "9851671430782535"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": []
+		},
+		"type": "line",
+		"sbmc": "",
+		"sbzlx": "13000001",
+		"id": "",
+		"sbid": "cae196a0-5c41-431d-bc93-461ad329d836"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": [{
+				"type": "Feature",
+				"geometry": {
+					"coordinates": [120.4025574086272,
+					36.06648346420788],
+					"type": "Point"
+				},
+				"properties": {
+					
+				}
+			}]
+		},
+		"type": "circle",
+		"sbmc": "",
+		"sbzlx": "",
+		"id": "",
+		"sbid": "62768967053205929"
+	},
+	{
+		"data": {
+			"type": "FeatureCollection",
+			"features": []
+		},
+		"type": "line",
+		"sbmc": "",
+		"sbzlx": "13000001",
+		"id": "",
+		"sbid": "18b545c4-ad45-40eb-96b7-165e081bf6a4"
+	}],
+	"RT_F": 1
+}

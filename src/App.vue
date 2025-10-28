@@ -1,5 +1,4 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
 import SgMap from './components/SgMap.vue'
 const handlerLoaded = (map) => {
   console.log(map)
@@ -7,22 +6,31 @@ const handlerLoaded = (map) => {
 </script>
 
 <template>
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header> -->
   <SgMap w-100vw @loaded="handlerLoaded"></SgMap>
   <RouterView />
 </template>
 
+<style>
+html {
+  font-size: calc(100vw / 1920);
+}
+* {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sgmap-popup-anchor-bottom-left .sgmap-popup-tip {
+  display: none;
+}
+.sgmap-popup {
+  max-width: none !important;
+}
+.sgmap-popup-content {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+</style>
 <style scoped>
 header {
   line-height: 1.5;

@@ -1,0 +1,420 @@
+{
+	"successful": true,
+	"code": 200,
+	"msg": "请求成功",
+	"data": [{
+			"id": "",
+			"sbid": "1002",
+			"sbzlx": "32600000",
+			"sbmc": "线路连接类",
+			"type": "line",
+			"data": {
+				"type": "FeatureCollection",
+				"features": [{
+						"type": "Feature",
+						"properties": {
+							"name": "低压站外-连接线",
+							"sbid": "100201",
+							"color": "#009B83",
+							"width": 3,
+							"lineType": "solid"
+						},
+						"geometry": {
+							"type": "LineString",
+							"coordinates": [
+								[
+									120.19344913592283, 36.314224063907744
+								],
+								[
+									120.21712597521167, 36.219290212263985
+								],
+								[
+									120.21968563351328, 36.164547686289026
+								],
+								[
+									120.21794191474442, 36.14970738664309
+								]
+							]
+						}
+					},
+					{
+						"type": "Feature",
+						"properties": {
+							"name": "低压-电缆段",
+							"sbid": "100202",
+							"color": "#009B83",
+							"width": 3,
+							"lineType": "dashed"
+						},
+						"geometry": {
+							"type": "LineString",
+							"coordinates": [
+								[
+									120.19280922134675, 36.107698955106315
+								],
+								[
+									120.1262581055073, 36.06684582554817
+								],
+								[
+									120.20944700030697, 36.03321657329518
+								],
+								[
+									120.2075272565815, 36.01303212667918
+								]
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"id": "",
+			"sbid": "1000",
+			"sbmc": "杆塔接头类",
+			"type": "circle",
+			"data": {
+				"type": "FeatureCollection",
+				"features": [{
+					"type": "Feature",
+					"properties": {
+						"name": "低压-运行杆塔",
+						"sbid": "100001",
+						"color": "#009B83",
+						"radius":8
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [
+							120.19344913592283, 36.314224063907744
+						]
+					}
+				}]
+			}
+		},
+		{
+			"id": "",
+			"sbid": "1001",
+			"sbzlx": "",
+			"sbmc": "终端设备类",
+			"type": "symbol",
+			"data": {
+				"type": "FeatureCollection",
+				"features": [{
+						"type": "Feature",
+						"properties": {
+							"name": "用电-计量箱",
+							"sbid": "100101",
+							"icon": "sjx",
+							"iconSize": 0.4
+						},
+						"geometry": {
+							"type": "Point",
+							"coordinates": [
+								120.21712597521167, 36.219290212263985
+							]
+						}
+					},
+					{
+						"type": "Feature",
+						"properties": {
+							"name": "配电变压器",
+							"sbid": "100102",
+							"icon": "pdbyq",
+							"iconSize": 0.4,
+							"bearCoordinates": [
+								[
+									119.98090374238032,
+									36.10887497950621
+								],
+								[
+									120.0095141549773,
+									36.05643456374662
+								]
+							]
+						},
+						"geometry": {
+							"type": "Point",
+							"coordinates": [
+								120.21968563351328, 36.164547686289026
+							]
+						}
+					},
+					{
+						"type": "Feature",
+						"properties": {
+							"name": "低压用户接入点",
+							"sbid": "100103",
+							"icon": "jrd",
+							"iconSize": 0.4,
+							"bearCoordinates": [
+								[
+									120.0095141549773,
+									36.05643456374662
+								],
+								[
+									119.98090374238032,
+									36.10887497950621
+								]
+							]
+						},
+						"geometry": {
+							"type": "Point",
+							"coordinates": [
+								120.1262581055073, 36.06684582554817
+							]
+						}
+					},
+					{
+						"type": "Feature",
+						"properties": {
+							"name": "低压用户接入点",
+							"sbid": "100104",
+							"icon": "jrd",
+							"iconSize": 0.4
+						},
+						"geometry": {
+							"type": "Point",
+							"coordinates": [
+								120.20944700030697, 36.03321657329518
+							]
+						}
+					},
+					{
+						"type": "Feature",
+						"properties": {
+							"name": "用户-计量箱",
+							"sbid": "100105",
+							"icon": "jlx",
+							"iconSize": 0.4
+						},
+						"geometry": {
+							"type": "Point",
+							"coordinates": [
+								120.2075272565815, 36.01303212667918
+							]
+						}
+					}
+				]
+			}
+		},
+		{
+			"id": "",
+			"sbid": "1003",
+			"sbzlx": "",
+			"sbmc": "低压站类",
+			"type": "line",
+			"data": {
+				"type": "FeatureCollection",
+				"features": [{
+					"type": "Feature",
+					"properties": {
+						"name": "低压站-上框",
+						"sbid": "100301",
+						"color": "#009B83",
+						"width": 3,
+						"lineType": "solid"
+					},
+					"geometry": {
+						"type": "LineString",
+						"coordinates": [
+							[
+								120.17910560144009,
+								36.152164163457485
+							],
+							[
+								120.25205899276995,
+								36.15343095846623
+							]
+						]
+					}
+				}, {
+					"type": "Feature",
+					"properties": {
+						"name": "低压站-左框",
+						"sbid": "100302",
+						"color": "#009B83",
+						"width": 3,
+						"lineType": "solid"
+					},
+					"geometry": {
+						"type": "LineString",
+						"coordinates": [
+							[
+								120.17910560144009,
+								36.152164163457485
+							],
+							[
+								120.17910560144009,
+								36.112164163457485
+							]
+						]
+					}
+				}, {
+					"type": "Feature",
+					"properties": {
+						"name": "低压站-右框",
+						"sbid": "100303",
+						"color": "#009B83",
+						"width": 3,
+						"lineType": "solid"
+					},
+					"geometry": {
+						"type": "LineString",
+						"coordinates": [
+							[
+								120.25205899276995,
+								36.15343095846623
+							],
+							[
+								120.25205899276995,
+								36.11243095846623
+							]
+						]
+					}
+				}, {
+					"type": "Feature",
+					"properties": {
+						"name": "低压站-母线",
+						"sbid": "100303",
+						"color": "#009B83",
+						"width": 6,
+						"lineType": "solid"
+					},
+					"geometry": {
+						"type": "LineString",
+						"coordinates": [
+							[
+								120.18230560144009,
+								36.132164163457485
+							],
+							[
+								120.24825899276995,
+								36.13343095846623
+							]
+						]
+					}
+				}, {
+					"type": "Feature",
+					"properties": {
+						"name": "低压站-上连接线",
+						"sbid": "100304",
+						"color": "#009B83",
+						"width": 3,
+						"lineType": "solid"
+					},
+					"geometry": {
+						"type": "LineString",
+						"coordinates": [
+							[
+								120.21825899276995,
+								36.132464163457485
+							],
+							[
+								120.21825899276995,
+								36.149164163457485
+							]
+						]
+					}
+				}, {
+					"type": "Feature",
+					"properties": {
+						"name": "低压站-下连接线",
+						"sbid": "100305",
+						"color": "#009B83",
+						"width": 3,
+						"lineType": "solid"
+					},
+					"geometry": {
+						"type": "LineString",
+						"coordinates": [
+							[
+								120.19230560144009,
+								36.132164163457485
+							],
+							[
+								120.19230560144009,
+								36.112164163457485
+							]
+						]
+					}
+				}, {
+					"type": "Feature",
+					"properties": {
+						"name": "低压站-上出线点",
+						"sbid": "100306",
+						"color": "#009B83",
+						"width": 3,
+						"lineType": "solid"
+					},
+					"geometry": {
+						"type": "LineString",
+						"coordinates": [
+							[
+								120.20837182362675, 36.14494905812134
+							],
+							[
+								120.22831412932888, 36.145242320055075
+							],
+							[
+								120.21854033237145, 36.13461715347418
+							],
+							[
+								120.20837182362675, 36.14494905812134
+							]
+						]
+					}
+				}, {
+					"type": "Feature",
+					"properties": {
+						"name": "低压站-下出线点",
+						"sbid": "100307",
+						"color": "#009B83",
+						"width": 3,
+						"lineType": "solid"
+					},
+					"geometry": {
+						"type": "LineString",
+						"coordinates": [
+							[
+								120.18459144216683, 36.12217241804797
+							],
+							[
+								120.20194909418413, 36.122251445572095
+							],
+							[
+								120.19232525691564, 36.11430272766965
+							],
+							[
+								120.18459144216683, 36.12217241804797
+							]
+						]
+					}
+				}]
+			}
+		},
+		{
+			"id": "",
+			"sbid": "1004",
+			"sbmc": "负荷开关",
+			"type": "circle",
+			"data": {
+				"type": "FeatureCollection",
+				"features": [{
+					"type": "Feature",
+					"properties": {
+						"name": "负荷开关",
+						"sbid": "100401",
+						"color": "#009B83",
+						"radius": 6
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [
+							120.19206104211833, 36.12763594478504
+						]
+					}
+				}]
+			}
+		}
+	]
+}

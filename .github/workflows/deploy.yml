@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # 监听 main 分支的 push 事件
+      - dev  # 监听 main 分支的 push 事件
 
 jobs:
   deploy:
