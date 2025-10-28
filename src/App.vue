@@ -19,6 +19,17 @@ html {
   padding: 0;
   margin: 0;
 }
+.sgmap-popup-anchor-bottom-left .sgmap-popup-tip {
+  display: none;
+}
+.sgmap-popup {
+  max-width: none !important;
+}
+.sgmap-popup-content {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
 </style>
 <style scoped>
 header {

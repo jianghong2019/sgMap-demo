@@ -12,7 +12,7 @@ const mapconfig = {
   appsecret: 'ee7b92c92455300896b732377a662077',
   style: 'aegis://styles/aegis/Streets-Raster512',
   zoom: 6,
-  center: [120.34259270944385, 36.34056829759095],
+  center: [120.34256270944385, 36.34056829759095],
   // style: {
   //   "layers": [
   //     // {

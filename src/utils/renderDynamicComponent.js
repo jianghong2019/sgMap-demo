@@ -1,6 +1,7 @@
 /**
  * usePopupRender - 兼容 Vue 2.7 和 Vue 3 的弹窗渲染工具
  */
+import { createApp, h, reactive } from 'vue'
 let vueVersion = 3
 let Vue2 = null
 try {
@@ -48,8 +49,6 @@ export function renderDynamicComponent(Component, initialProps = {}, mountNode =
     }
   } else {
     // Vue 3.x 方式
-    // 动态引入，避免打包冲突
-    const { createApp, h, reactive } = require('vue')
     const container = document.createElement('div')
     container.className = 'popup-render-root'
     mountNode.appendChild(container)

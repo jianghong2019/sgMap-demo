@@ -368,59 +368,124 @@ export const useVectorLayer = (map) => {
   }
   const addGeoJsonLayers = (geoJsonData) => {
     const layerReturns = []
-    watch(
-      geoJsonData,
-      (datas, oldValue) => {
-        if (!datas || !datas?.length) return
-        datas?.forEach((geoDataItem) => {
-          const { type } = geoDataItem
-          let layout = {}
-          let paint = {}
-          if (type === 'circle') {
-            paint = {
-              'circle-radius': ['case', ['has', 'radius'], ['get', 'radius'], 10],
-              'circle-color': ['get', 'color'],
-            }
-          } else if (type === 'line') {
-            layout = {
-              'line-cap': 'square',
-              'line-join': 'miter',
-            }
-            paint = {
-              'line-color': ['get', 'color'],
-              'line-width': ['case', ['has', 'width'], ['get', 'width'], 3],
-              // "line-dasharray": [1,2],//虚线
-              'line-dasharray': [
-                'case',
-                ['==', ['get', 'lineType'], 'dashed'],
-                ['literal', [1, 4]],
-                ['literal', []],
-              ],
-            }
-          } else if (type === 'symbol') {
-            layout = {
-              'icon-image': ['get', 'icon'],
-              'icon-anchor': 'center',
-              'icon-size': ['case', ['has', 'iconSize'], ['get', 'iconSize'], 0.4],
-              'icon-rotate': ['get', 'rotation'],
-              'icon-allow-overlap': true,
-            }
-          }
-          /* 根据数据结构绘制地图元素*/
-          const layerReturn = addGeoJsonLayer(geoDataItem.data, {
-            id: geoDataItem.sbid,
-            type: geoDataItem.type,
-            layout,
-            paint,
-          })
-          layerReturns.push(layerReturn)
-        })
-      },
-      {
-        immediate: true,
-      },
-    )
+    // watch(
+    //   geoJsonData,
+    //   (datas, oldValue) => {
+    //     if (!datas || !datas?.length) return
+    //     console.log(datas)
+
+    //     datas?.forEach((geoDataItem) => {
+    //       console.log('geoDataItem', geoDataItem)
+
+    //       const { type } = geoDataItem
+    //       let layout = {}
+    //       let paint = {}
+    //       if (type === 'circle') {
+    //         paint = {
+    //           'circle-radius': ['case', ['has', 'radius'], ['get', 'radius'], 10],
+    //           'circle-color': ['get', 'color'],
+    //         }
+    //       } else if (type === 'line') {
+    //         layout = {
+    //           'line-cap': 'square',
+    //           'line-join': 'miter',
+    //         }
+    //         paint = {
+    //           'line-color': ['get', 'color'],
+    //           'line-width': ['case', ['has', 'width'], ['get', 'width'], 3],
+    //           // "line-dasharray": [1,2],//虚线
+    //           'line-dasharray': [
+    //             'case',
+    //             ['==', ['get', 'lineType'], 'dashed'],
+    //             ['literal', [1, 4]],
+    //             ['literal', []],
+    //           ],
+    //         }
+    //       } else if (type === 'symbol') {
+    //         layout = {
+    //           'icon-image': ['get', 'icon'],
+    //           'icon-anchor': 'center',
+    //           'icon-size': ['case', ['has', 'iconSize'], ['get', 'iconSize'], 0.4],
+    //           'icon-rotate': ['get', 'rotation'],
+    //           'icon-allow-overlap': true,
+    //         }
+    //       }
+    //       /* 根据数据结构绘制地图元素*/
+    //       const layerReturn = addGeoJsonLayer(geoDataItem.data, {
+    //         id: geoDataItem.sbid,
+    //         type: geoDataItem.type,
+    //         layout,
+    //         paint,
+    //       })
+    //       layerReturns.push(layerReturn)
+    //     })
+    //   },
+    //   {
+    //     immediate: true,
+    //   },
+    // )
+    if (!geoJsonData || !geoJsonData?.length) return
+    console.log(geoJsonData)
+
+    geoJsonData?.forEach((geoDataItem) => {
+      console.log('geoDataItem', geoDataItem)
+
+      const { type } = geoDataItem
+      let layout = {}
+      let paint = {}
+      if (type === 'circle') {
+        paint = {
+          'circle-radius': ['case', ['has', 'radius'], ['get', 'radius'], 10],
+          'circle-color': ['get', 'color'],
+        }
+      } else if (type === 'line') {
+        layout = {
+          'line-cap': 'square',
+          'line-join': 'miter',
+        }
+        paint = {
+          'line-color': ['get', 'color'],
+          'line-width': ['case', ['has', 'width'], ['get', 'width'], 3],
+          // "line-dasharray": [1,2],//虚线
+          'line-dasharray': [
+            'case',
+            ['==', ['get', 'lineType'], 'dashed'],
+            ['literal', [1, 4]],
+            ['literal', []],
+          ],
+        }
+      } else if (type === 'symbol') {
+        layout = {
+          'icon-image': ['get', 'icon'],
+          'icon-anchor': 'center',
+          'icon-size': ['case', ['has', 'iconSize'], ['get', 'iconSize'], 0.4],
+          'icon-rotate': ['get', 'rotation'],
+          'icon-allow-overlap': true,
+        }
+      } else if (type === 'fill') {
+        layout = {
+          visibility: 'visible',
+        }
+        paint = {
+          // 面填充色，优先使用 feature.properties.color
+          'fill-color': ['get', 'color'],
+          // 填充透明度，存在 opacity 属性时使用，否则默认 1
+          'fill-opacity': ['case', ['has', 'opacity'], ['get', 'opacity'], 1],
+          // 面边线颜色，存在 lineColor 时使用，否则回退到黑色
+          'fill-outline-color': ['case', ['has', 'lineColor'], ['get', 'lineColor'], '#000'],
+        }
+      }
+      /* 根据数据结构绘制地图元素*/
+      const layerReturn = addGeoJsonLayer(geoDataItem.data, {
+        id: geoDataItem.sbid,
+        type: geoDataItem.type,
+        layout,
+        paint,
+      })
+      layerReturns.push(layerReturn)
+    })
     return {
+      layerReturns,
       destory: () => {
         layerReturns?.forEach((layerReturn) => {
           layerReturn?.destoryLayer()
