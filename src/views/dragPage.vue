@@ -195,7 +195,7 @@ export default {
     },
   },
   async mounted() {
-    const res = await fetch('/features.json')
+    const res = await fetch('./features.json')
     const geoJson = await res.json()
     console.log('dargPage中获取地图实例：===>', sgMapInstance, geoJson, geoJson.data)
     if (sgMapInstance?.value && geoJson?.data) {
